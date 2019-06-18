@@ -1,5 +1,6 @@
 package com.njau.spring.starter;
 
+import com.njau.spring.beans.BeansFactory;
 import com.njau.spring.core.ClassScanner;
 import com.njau.spring.web.handler.HandlerManager;
 import com.njau.spring.web.server.TomcatServer;
@@ -19,6 +20,7 @@ public class MiniApplication {
         try {
             tomcatServer.startServer();
             List<Class<?>> classList = ClassScanner.scanClasses(clz.getPackage().getName());
+            BeansFactory.initBean(classList);
             HandlerManager.resolveMappingHandler(classList);
             classList.forEach(item -> System.out.println(item.getName()));
         } catch (LifecycleException e) {
@@ -26,6 +28,8 @@ public class MiniApplication {
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

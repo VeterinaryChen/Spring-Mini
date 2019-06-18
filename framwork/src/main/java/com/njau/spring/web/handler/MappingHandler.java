@@ -1,5 +1,7 @@
 package com.njau.spring.web.handler;
 
+import com.njau.spring.beans.BeansFactory;
+
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
@@ -36,7 +38,7 @@ public class MappingHandler {
         }
 
         // controller 可能返回多种类型，用 object 存储结果。
-        Object ctl = controller.newInstance();
+        Object ctl = BeansFactory.getBean(controller);
 
         Object res = method.invoke(ctl,parameters);
         response.getWriter().println(res);

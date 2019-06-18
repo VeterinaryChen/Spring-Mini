@@ -27,14 +27,14 @@ public class TomcatServer {
 
         Context context = new StandardContext();
         context.setPath("");
-        ((StandardContext) context).addApplicationLifecycleListener(new Tomcat.FixContextListener());
-        DispatcherServlet testServlet = new DispatcherServlet();
-        Tomcat.addServlet(context,"DispatcherServlet",testServlet).setAsyncSupported(true);
-        context.addServletMappingDecoded("/","DispatcherServlet");
+        context.addLifecycleListener(new Tomcat.FixContextListener());
+
+        DispatcherServlet servlet = new DispatcherServlet();
+        Tomcat.addServlet(context,"dispatcherServlet",servlet).setAsyncSupported(true);
+        context.addServletMappingDecoded("/","dispatcherServlet");
         tomcat.getHost().addChild(context);
 
         Thread awaitThread = new Thread("tomcat_await_thread"){
-
             @Override
             public void run(){
                 TomcatServer.this.tomcat.getServer().await();

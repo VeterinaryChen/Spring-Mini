@@ -1,0 +1,4 @@
+rootProject.name = 'spring-mini'
+include 'framwork'
+include 'test'
+

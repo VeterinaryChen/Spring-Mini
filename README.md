@@ -2,12 +2,10 @@
 
 Mini版的 Spring Framwork。具有以下功能：
 
-1. 包扫描。
-2. Web组件。
-3. MVC
-## 四.Bean管理(IOC与DI)
-### 4.1 实现依赖注入
-1. 扫描包获得类定义。
-2. 反射初始化Bean，实现依赖注入。
-3. 解决Bean初始化顺序问题。
+### Framwork为框架模块，test为测试模块。使用Gradle打包。
+
+1. 利用`ClassLoader`实现包扫描。
+2. Web组件，整合Tomcat。
+3. MVC，实现`dispatcherServlet`。
+4. Bean管理，实现IOC与DI。
 
